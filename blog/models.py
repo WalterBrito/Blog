@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 
 
-class PublishedManager(models.manager):
+class PublishedManager(models.Model):
     def get_queryset(self):
         return super(PublishedManager, self).get_queryset().filter(status='published')
 
