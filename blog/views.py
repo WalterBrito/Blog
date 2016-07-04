@@ -47,7 +47,7 @@ def post_share(request, post_id):
             # Form fields passed validation
             cd = form.cleaned_data
             # ... send email
-            post_url = request.build_absolute_url(post.get_absolute_url())
+            post_url = request.build_absolute_uri(post.get_absolute_url())
             subject = '{} ({}) recommends you reading "{}"'.format(cd['name'], cd['email'], post.title) 
             message = 'Read "{}" at {}\n\n{}\'s comments: {}'.format(post.title, post_url, cd['name'], cd['comments'])
             send_mail(subject, message, 'django.framework001@gmail.com', [cd['to']]) 
