@@ -27,9 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+SITE_ID = 1
 # Application definition
-
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,6 +38,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'blog',
     'taggit',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+    'haystack',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -84,6 +86,15 @@ DATABASES = {
 }
 
 
+# Search engine backends for haystack
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+        'URL': 'http://127.0.0.1:8983/solr/blog'
+    },
+}
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
@@ -103,7 +114,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Send email 
+# Send email
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'django.framework001@gmail.com'
 EMAIL_HOST_PASSWORD = 'django001'
